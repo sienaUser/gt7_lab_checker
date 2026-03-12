@@ -2,8 +2,11 @@ const { execSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 
-const DIST = path.join(__dirname, 'dist');
-const PUBLIC = path.join(__dirname, 'public');
+const ROOT = __dirname;
+const DIST = path.join(ROOT, 'dist');
+const PUBLIC = path.join(ROOT, 'public');
+const ENTRY = path.join(ROOT, 'src', 'worker.js');
+const OUT = path.join(DIST, '_worker.js');
 
 // dist 디렉토리 초기화
 fs.rmSync(DIST, { recursive: true, force: true });
@@ -14,8 +17,8 @@ copyDir(PUBLIC, DIST);
 
 // src/worker.js → dist/_worker.js 번들링
 execSync(
-  'npx esbuild src/worker.js --bundle --outfile=dist/_worker.js --format=esm --minify',
-  { stdio: 'inherit' }
+  `npx esbuild "${ENTRY}" --bundle --outfile="${OUT}" --format=esm --minify`,
+  { stdio: 'inherit', cwd: ROOT }
 );
 
 console.log('Build complete → dist/');
