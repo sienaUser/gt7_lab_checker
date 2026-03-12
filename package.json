@@ -5,14 +5,19 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "dev:cf": "npx wrangler dev",
+    "deploy": "npx wrangler deploy",
+    "build": "echo 'Build handled by wrangler'"
   },
   "dependencies": {
     "ejs": "^3.1.10",
     "express": "^4.18.2",
+    "hono": "^4.6.0",
     "method-override": "^3.0.0"
   },
   "devDependencies": {
-    "nodemon": "^3.0.3"
+    "nodemon": "^3.0.3",
+    "wrangler": "^3.99.0"
   }
 }
