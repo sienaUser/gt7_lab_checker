@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "gt7-lap-tracker",
+  "name": "gt7labtime",
   "pages_build_output_dir": "./dist",
   "compatibility_date": "2024-12-01",
   "kv_namespaces": [
