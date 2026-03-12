@@ -6,9 +6,8 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
-    "dev:cf": "npx wrangler dev",
-    "deploy": "npx wrangler deploy",
-    "build": "echo 'Build handled by wrangler'"
+    "dev:cf": "npx wrangler pages dev ./dist",
+    "build": "node build.js"
   },
   "dependencies": {
     "ejs": "^3.1.10",
