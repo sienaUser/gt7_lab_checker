@@ -1,0 +1,82 @@
+<%- include('partials/header') %>
+
+<div class="page-header">
+  <h1>통계</h1>
+</div>
+
+<!-- 베스트 랩타임 -->
+<section class="stats-section">
+  <h2>베스트 랩타임</h2>
+
+  <% if (bestLaps.length === 0) { %>
+    <div class="empty-state">
+      <p>아직 기록된 랩타임이 없습니다.</p>
+      <a href="/record" class="btn btn-primary">기록 추가하기</a>
+    </div>
+  <% } else { %>
+    <div class="table-wrap">
+      <table class="lap-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>차량</th>
+            <th>서킷</th>
+            <th>베스트 타임</th>
+            <th>타이어</th>
+            <th>날짜</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% bestLaps.forEach((lap, i) => { %>
+            <tr class="<%= i === 0 ? 'best-row' : '' %>">
+              <td class="num"><%= i === 0 ? '🏆' : i + 1 %></td>
+              <td><%= lap.carName %></td>
+              <td><%= lap.circuitName %></td>
+              <td class="time best-time"><%= lap.timeDisplay %></td>
+              <td class="tire"><%= lap.tireType %></td>
+              <td class="date"><%= lap.dateDisplay %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  <% } %>
+</section>
+
+<!-- 랩타임 추이 그래프 -->
+<section class="stats-section chart-section">
+  <h2>랩타임 추이</h2>
+
+  <form class="filter-form" method="GET" action="/stats">
+    <select name="circuitId" onchange="this.form.submit()">
+      <option value="">서킷을 선택하세요</option>
+      <% circuits.forEach(circuit => { %>
+        <option value="<%= circuit.id %>" <%= selectedCircuitId === circuit.id ? 'selected' : '' %>>
+          <%= circuit.name %>
+        </option>
+      <% }) %>
+    </select>
+  </form>
+
+  <% if (selectedCircuitId && !chartData) { %>
+    <div class="empty-state">
+      <p>선택한 서킷의 기록이 없습니다.</p>
+    </div>
+  <% } else if (chartData) { %>
+    <div class="chart-container">
+      <canvas id="lapChart"></canvas>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+    <script>
+      window.LAP_CHART_DATA = <%- chartData %>;
+    </script>
+    <script src="/js/chart-init.js"></script>
+  <% } else { %>
+    <div class="empty-state">
+      <p>서킷을 선택하면 랩타임 추이 그래프를 볼 수 있습니다.</p>
+    </div>
+  <% } %>
+</section>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,65 @@
+[
+  {
+    "id": "1741100000001",
+    "carId": "car_001",
+    "circuitId": "cir_002",
+    "timeMs": 135891,
+    "tireType": "Sport: Soft",
+    "memo": "기본 세팅, 첫 주행",
+    "createdAt": "2026-02-28T10:00:00.000Z"
+  },
+  {
+    "id": "1741100000002",
+    "carId": "car_001",
+    "circuitId": "cir_002",
+    "timeMs": 134210,
+    "tireType": "Sport: Soft",
+    "memo": "브레이크 포인트 조정",
+    "createdAt": "2026-03-01T11:30:00.000Z"
+  },
+  {
+    "id": "1741100000003",
+    "carId": "car_001",
+    "circuitId": "cir_002",
+    "timeMs": 132755,
+    "tireType": "Racing: Medium",
+    "memo": "타이어 업그레이드, 스프링 소프트",
+    "createdAt": "2026-03-02T14:00:00.000Z"
+  },
+  {
+    "id": "1741100000004",
+    "carId": "car_004",
+    "circuitId": "cir_002",
+    "timeMs": 128430,
+    "tireType": "Racing: Soft",
+    "memo": "RX-7 첫 시도, 오버스티어 세팅",
+    "createdAt": "2026-03-02T16:00:00.000Z"
+  },
+  {
+    "id": "1741100000005",
+    "carId": "car_004",
+    "circuitId": "cir_002",
+    "timeMs": 126980,
+    "tireType": "Racing: Soft",
+    "memo": "다운포스 조정, 랩 단축 성공",
+    "createdAt": "2026-03-03T10:00:00.000Z"
+  },
+  {
+    "id": "1741100000006",
+    "carId": "car_008",
+    "circuitId": "cir_001",
+    "timeMs": 362145,
+    "tireType": "Racing: Hard",
+    "memo": "뉘르 GP 첫 주행, 풀 탱크",
+    "createdAt": "2026-03-04T09:00:00.000Z"
+  },
+  {
+    "id": "1741100000007",
+    "carId": "car_008",
+    "circuitId": "cir_001",
+    "timeMs": 358820,
+    "tireType": "Racing: Medium",
+    "memo": "타이어 변경, 섹터2 개선",
+    "createdAt": "2026-03-05T13:00:00.000Z"
+  }
+]

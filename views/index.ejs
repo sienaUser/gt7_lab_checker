@@ -1,0 +1,76 @@
+<%- include('partials/header') %>
+
+<div class="page-header">
+  <h1>랩타임 목록</h1>
+  <a href="/record" class="btn btn-primary">+ 기록하기</a>
+</div>
+
+<!-- 필터 -->
+<form class="filter-form" method="GET" action="/">
+  <select name="carId">
+    <option value="">전체 차량</option>
+    <% cars.forEach(car => { %>
+      <option value="<%= car.id %>" <%= filter.carId === car.id ? 'selected' : '' %>>
+        <%= car.maker %> <%= car.model %>
+      </option>
+    <% }) %>
+  </select>
+  <select name="circuitId">
+    <option value="">전체 서킷</option>
+    <% circuits.forEach(circuit => { %>
+      <option value="<%= circuit.id %>" <%= filter.circuitId === circuit.id ? 'selected' : '' %>>
+        <%= circuit.name %>
+      </option>
+    <% }) %>
+  </select>
+  <button type="submit" class="btn btn-secondary">필터 적용</button>
+  <% if (filter.carId || filter.circuitId) { %>
+    <a href="/" class="btn btn-ghost">초기화</a>
+  <% } %>
+</form>
+
+<!-- 목록 -->
+<% if (laps.length === 0) { %>
+  <div class="empty-state">
+    <p>아직 기록된 랩타임이 없습니다.</p>
+    <a href="/record" class="btn btn-primary">첫 번째 기록 추가하기</a>
+  </div>
+<% } else { %>
+  <div class="table-wrap">
+    <table class="lap-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>차량</th>
+          <th>서킷</th>
+          <th>랩타임</th>
+          <th>타이어</th>
+          <th>튜닝 메모</th>
+          <th>날짜</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% laps.forEach((lap, i) => { %>
+          <tr>
+            <td class="num"><%= i + 1 %></td>
+            <td><%= lap.carName %></td>
+            <td><%= lap.circuitName %></td>
+            <td class="time"><%= lap.timeDisplay %></td>
+            <td class="tire"><%= lap.tireType %></td>
+            <td class="memo"><%= lap.memo || '—' %></td>
+            <td class="date"><%= lap.dateDisplay %></td>
+            <td>
+              <form method="POST" action="/laps/<%= lap.id %>?_method=DELETE"
+                    onsubmit="return confirm('이 기록을 삭제하시겠습니까?')">
+                <button type="submit" class="btn-delete" title="삭제">✕</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+<% } %>
+
+<%- include('partials/footer') %>
